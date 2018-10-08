@@ -6,9 +6,8 @@
   "directories": {
     "lib": "lib"
   },
-  "scripts": {
-    "test": "test"
-  },
+  "preferGlobal": true,
+  "bin": "./index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/phylp/ghetto-rig.git"

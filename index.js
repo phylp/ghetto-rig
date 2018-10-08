@@ -1,4 +1,4 @@
-//for some reason the child_process exec function fails when implemented in promisified form via utils
+#!/usr/bin/env node
 const { ghettoRig } = require('./lib/rigger');
 let program = require('commander');
 
