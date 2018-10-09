@@ -5,19 +5,23 @@ let program = require('commander');
 program
     .version('0.0.1')
     .description('ghetto rig your npm packages FTW')
-    .option('-d --delete <delete>', 'Delete outdated packages', /^(true|false)$/i, 'false')
 
 program
     .command('fix <package> [packages...]')
     .alias('f')
     .description('fix a given package')
     .action((package, packages) => {
-        if(typeof package !== 'string'){
-            console.log('gimme a package name bub')
-            process.exit()
-        }
-        packages.length ? packages.splice(1, 0, package) : [package];
-        return ghettoRig((packages || package), program.delete);
+        if(packages.length) packages.splice(1, 0, package)
+        return ghettoRig((packages.length ? packages : [package]), false);
+    });
+
+program
+    .command('clean-fix <package> [packages...]')
+    .alias('cf')
+    .description('fix a given package and delete the old version')
+    .action((package, packages) => {
+        if (packages.length) packages.splice(1, 0, package)
+        return ghettoRig((packages.length ? packages : [package]), true);
     });
 
 program.parse(process.argv);
